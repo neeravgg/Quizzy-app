@@ -1,0 +1,149 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer base {
+  :root {
+    /* Background */
+    --color-base: 255, 253, 252;
+    --color-muted: 242, 242, 242;
+    --color-dull: 210, 210, 210;
+    --color-green-hue: 216, 235, 231;
+    --color-green-hover: 184, 212, 206;
+    --color-gold-hue: 63, 50, 1;
+    --color-gold-hover: 90, 73, 3;
+    --color-inverted: 50, 50, 50;
+    /* Text */
+    --color-text-base: 0, 0, 0;
+    --color-text-muted: 55, 65, 81;
+    --color-text-accent: 75, 85, 99;
+    --color-text-inverted: 242, 242, 242;
+    /* Buttons */
+    --color-button-accent: 56, 168, 146;
+    --color-button-hover: 0, 102, 0;
+    --color-button-muted: 9, 154, 179;
+    --color-button-muted-hover: 1, 113, 133;
+    /* svg */
+    --color-svg-accent: 75, 85, 99;
+    --color-svg-accent-muted: 193, 197, 201;
+    --color-svg-hover: 8, 145, 178;
+    --color-svg-hover-muted: 103, 232, 249;
+    /* border */
+    --color-border-base: 233, 237, 239;
+    --color-border-muted: 222, 224, 224;
+    /* Highlight */
+    --color-highlight-base: 0, 102, 0;
+
+    /* gradient */
+    --color-gradient-base1: 255, 240, 211;
+    --color-gradient-base2: 255, 221, 156;
+    --color-gradient-completed1: 237, 255, 252;
+    --color-gradient-completed2: 176, 255, 242;
+    --color-gradient-wrong1: 252, 177, 191, 0.9;
+    --color-gradient-wrong2: 237, 111, 135, 0.9;
+    --color-gradient-locked1: 209, 209, 209, 0.5;
+    --color-gradient-locked2: 168, 168, 168, 0.5;
+    --color-gradient-login1: 2, 2, 2, 0.7;
+    --color-gradient-login2: 0, 0, 0, 0.7;
+  }
+  .theme-dark {
+    /* Background */
+    --color-base: 31, 31, 33;
+    --color-muted: 57, 57, 59;
+    --color-dull: 47, 47, 49;
+    --color-green-hue: 216, 235, 231;
+    --color-inverted: 160, 160, 160;
+    /* Text */
+    --color-text-base: 255, 255, 255;
+    --color-text-muted: 200, 200, 200;
+    --color-text-accent: 75, 85, 99;
+    --color-text-inverted: 255, 255, 255;
+    /* Buttons */
+    --color-button-accent: 0, 102, 0;
+    --color-button-hover: 56, 168, 146;
+    --color-button-muted: 9, 154, 179;
+    --color-button-muted-hover: 1, 113, 133;
+    /* svg */
+    --color-svg-accent: 34, 211, 238;
+    --color-svg-accent-muted: 209, 213, 219;
+    --color-svg-hover: 103, 232, 249;
+    --color-svg-hover-muted: 6, 182, 212;
+    /* border */
+    --color-border-base: 65, 65, 66;
+    --color-border-muted: 89, 89, 89;
+    /* Highlight */
+    --color-highlight-base: 0, 80, 0;
+
+    /* gradient */
+    --color-gradient-base1: 255, 240, 211;
+    --color-gradient-base2: 255, 221, 156;
+    --color-gradient-completed1: 237, 255, 252;
+    --color-gradient-completed2: 176, 255, 242;
+    --color-gradient-wrong1: 252, 177, 191;
+    --color-gradient-wrong2: 255, 117, 143;
+  }
+  .theme-amber {
+    /* Buttons */
+    --color-button-accent: 252, 185, 56;
+    --color-button-hover: 240, 158, 0;
+    --color-button-muted: 254, 117, 75;
+    /* Text */
+    --color-text-base: 0, 0, 0;
+  }
+  .theme-red {
+    /* Buttons */
+    --color-button-accent: 252, 88, 120;
+    --color-button-hover: 227, 54, 74;
+    --color-button-muted: 0, 102, 0;
+    /* Text */
+    --color-text-base: 255, 255, 255;
+  }
+  .theme-green {
+    /* Buttons */
+    --color-button-accent: 56, 168, 146;
+    --color-button-hover: 45, 135, 117;
+    --color-button-muted: 0, 102, 0;
+    /* Text */
+    --color-text-base: 255, 255, 255;
+  }
+  .theme-locked {
+    /* Buttons */
+    --color-button-accent: 146, 185, 185;
+    --color-button-hover: 146, 185, 185;
+    --color-button-muted: 254, 117, 75;
+    /* Text */
+    --color-text-base: 0, 0, 0;
+  }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+* {
+  box-sizing: border-box;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  border-radius: vh;
+  background: #141414;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #777676;
+  border-radius: 100vh;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #a0aec0;
+}
