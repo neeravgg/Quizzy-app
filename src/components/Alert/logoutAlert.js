@@ -5,6 +5,7 @@ import TestContext from "../context/TestContext";
 
 export default function LogoutALert() {
   const { logoutAlert, setlogoutAlert } = useContext(TestContext);
+  
   function closeModal() {
     setlogoutAlert(false);
   }

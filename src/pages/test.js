@@ -1,12 +1,19 @@
-import React from "react";
+import React, { useEffect, useContext } from "react";
 import useMediaQuery from "../components/hooks/useMediaQuery";
 import IndicatorCards from "../components/indicatorCards";
 import { requireAuth } from "../components/utils/requireAuth";
+import { useRouter } from "next/router";
 import SidebarBehave from "../components/utils/sidebarBehave";
-
+import TestContext from "../components/context/TestContext";
 export default function PracticeTest() {
   const isLaptop = useMediaQuery("(min-width: 1024px)");
   const isTablet = useMediaQuery("(min-width: 768px )");
+  const Router = useRouter();
+  const { FinalTestChance } = useContext(TestContext);
+
+  useEffect(() => {
+    if (FinalTestChance > 0) Router.push("/certificate");
+  }, []);
 
   return (
     <>
@@ -26,7 +33,7 @@ export default function PracticeTest() {
             >
               FINAL TEST
             </span>
-          
+
             <div className='flex flex-col  rounded-3xl bg-skin-hue dark:bg-skin-gold-hover shadow-md  py-3 lg:py-5  gap-3  w-full sm:w-11/12 lg:w-9/12 px-1 '>
               <span
                 className={` bg-skin-muted rounded-xl text-lg sm:text-xl text-skin-base dark:theme-dark font-bold`}

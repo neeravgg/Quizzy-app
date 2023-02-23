@@ -26,9 +26,10 @@ export default function Quiz({ session }) {
     return QuizId < 4 ? 15 * 60 * 1000 : 25 * 60 * 1000;
   };
   useEffect(() => {
-    if (QuizId === 4) {
-      if (FinalTestChance <= 0) Router.push("/");
-    }
+    if (QuizId === 4 && FinalTestChance <= 0) 
+      Router.push("/");
+    else if(FinalTestChance > 0)
+    Router.push("/certificate")
   }, []);
 
   useEffect(() => {
@@ -91,7 +92,7 @@ export default function Quiz({ session }) {
   };
 
   const handleSubmitButton = async () => {
-    console.log("running");
+    
     if (selectedOptions[currentQuestion]) {
       let newScore = 0;
       for (let i = 0; i < QuestionState?.length; i++) {

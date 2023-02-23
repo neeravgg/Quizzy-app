@@ -1,8 +1,10 @@
 import React, { useContext } from "react";
 import Link from "next/link";
+import Router from "next/router";
 import indicator from "./Dashboard/indicator";
 import TestContext from "./context/TestContext";
 import useMediaQuery from "./hooks/useMediaQuery";
+import { CheckCertificate } from "./utils/CheckCertificate";
 
 export default function IndicatorCards(props) {
   const isLaptop = useMediaQuery("(min-width: 1024px)");
@@ -37,8 +39,10 @@ export default function IndicatorCards(props) {
   const handleMenu = () => {
     return props.value !== "4" ? UnitMenu : FinalMenu;
   };
+
   const handleLock = (state, link) => {
-    return state !== "1"  ? link : "";
+    if (state != "1" && state != "4") Router.push(link);
+    if (state == "3") CheckCertificate();
   };
 
   return (
@@ -60,31 +64,32 @@ export default function IndicatorCards(props) {
               </span>
 
               {/* state */}
-              <Link href={handleLock(menu.states, menu.link)}>
-                <button
-                  className={`${
-                    indicator[menu.states]?.theme
-                  } bg-skin-btn-accent hover:bg-skin-btn-hover  px-2 py-2 rounded-3xl shadow-md `}
-                >
-                  <div className='inline-flex gap-2 justify-center '>
-                    <svg
-                      xmlns='http://www.w3.org/2000/svg'
-                      className='h-9 w-9 text-skin-accent mt-1'
-                      viewBox={indicator[menu.states]?.viewBox}
-                      fill='currentColor'
-                    >
-                      <path
-                        fillRule='evenodd'
-                        d={`${indicator[menu.states]?.svg}`}
-                        clipRule='evenodd'
-                      />
-                    </svg>
-                    <span className='text-skin-base text-xl font-semibold py-2'>
-                      {indicator[menu.states]?.label}
-                    </span>
-                  </div>
-                </button>
-              </Link>
+              {/* <Link href={handleLock(menu.states, menu.link)}> */}
+              <button
+                onClick={() => handleLock(menu.states, menu.link)}
+                className={`${
+                  indicator[menu.states]?.theme
+                } bg-skin-btn-accent hover:bg-skin-btn-hover  px-2 py-2 rounded-3xl shadow-md `}
+              >
+                <div className='inline-flex gap-2 justify-center '>
+                  <svg
+                    xmlns='http://www.w3.org/2000/svg'
+                    className='h-9 w-9 text-skin-accent mt-1'
+                    viewBox={indicator[menu.states]?.viewBox}
+                    fill='currentColor'
+                  >
+                    <path
+                      fillRule='evenodd'
+                      d={`${indicator[menu.states]?.svg}`}
+                      clipRule='evenodd'
+                    />
+                  </svg>
+                  <span className='text-skin-base text-xl font-semibold py-2'>
+                    {indicator[menu.states]?.label}
+                  </span>
+                </div>
+              </button>
+              {/* </Link> */}
             </div>
           </div>
         ))}
