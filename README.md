@@ -1,6 +1,7 @@
 # Quizzy App
 
-![Quizzy](https://user-images.githubusercontent.com/68321206/220978300-79a4b98e-3220-454c-9881-361a9067dbf7.png)
+![quizzy](https://user-images.githubusercontent.com/68321206/224674325-064da8ba-d9ae-4518-8ad3-3a564f3a88d0.png)
+
 
 ### `npm install`
 
