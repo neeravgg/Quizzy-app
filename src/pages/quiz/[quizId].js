@@ -7,7 +7,7 @@ import { getScore, getState } from "../../components/Quiz/getQuizStats";
 import Agree from "../../components/Quiz/agree";
 import Score from "../../components/Quiz/score";
 import Timer from "../../components/Quiz/timer";
-import { useLeavePageConfirm } from "../../components/utils/use-leave";
+import { useLeavePageConfirm } from "../../components/Alert/TestAlert";
 
 export default function Quiz({ session }) {
   useLeavePageConfirm(true);
@@ -29,8 +29,8 @@ export default function Quiz({ session }) {
     if (QuizId === 4 && FinalTestChance <= 0) 
       Router.push("/");
     else if(FinalTestChance > 0)
-    Router.push("/certificate")
-  }, []);
+    Router.push("/reward")
+  });
 
   useEffect(() => {
     const form = JSON.parse(localStorage.getItem("formData"));
@@ -97,9 +97,7 @@ export default function Quiz({ session }) {
       let newScore = 0;
       for (let i = 0; i < QuestionState?.length; i++) {
         QuestionState[i].options.map((answer) => {
-          answer.isCorrect &&
-            answer.answer === selectedOptions[i]?.answerByUser &&
-            newScore++;
+          answer.isCorrect && answer.answer === selectedOptions[i]?.answerByUser && newScore++;
         });
       }
       setScore(newScore);
@@ -117,12 +115,13 @@ export default function Quiz({ session }) {
         {
           method: "PUT",
           body: JSON.stringify(
-            getState(newScore, QuizId, QuestionState?.length)
+            getState(newScore, QuizId, QuestionState?.length, FinalTestChance)
           ),
         }
       );
     }
   };
+ 
 
   return (
     <SidebarBehave>
@@ -145,7 +144,7 @@ export default function Quiz({ session }) {
               {QuizId <= 3 ? `Unit- ${QuizId}` : "Final-Test"}
             </span>
 
-            <Timer duration={duration} submit={() => handleSubmitButton()} />
+            <Timer submit={() => handleSubmitButton()} duration={duration}  />
           </div>
 
           {/* quiz area */}
@@ -166,26 +165,26 @@ export default function Quiz({ session }) {
 
             {/* options */}
             <div className='flex flex-col justify-center w-full gap-3'>
-              {QuestionState?.length > 0 &&
-                QuestionOptions[currentQuestion]?.map((answer, index) => (
+            {QuestionState?.length > 0 &&
+                QuestionOptions[currentQuestion]?.map((item, index) => (
                   <div
                     key={index}
                     className='flex items-center w-full py-3 pl-5 border-2 cursor-pointer border-skin-muted rounded-3xl bg-skin-muted dark:theme-dark shadow-sm hover:bg-skin-btn-hover-muted '
-                    onClick={(e) => handleAnswerOption(answer.answer, e)}
+                    onClick={(e) => handleAnswerOption(item.answer, e)}
                   >
                     <input
-                      type='radio'
-                      name={answer.answer}
-                      value={answer.answer}
+                      type='radio' 
+                      name={item.answer}
+                      value={item.answer}
                       checked={
-                        answer.answer ===
+                        item.answer ===
                         selectedOptions[currentQuestion]?.answerByUser
                       }
-                      onChange={(e) => handleAnswerOption(answer.answer, e)}
+                      onChange={(e) => handleAnswerOption(item.answer, e)}
                       className='w-6 h-6 bg-black'
                     />
                     <span className='ml-6 text-skin-base text-md md:tex-lg font-medium '>
-                      {answer.answer}
+                      {item.answer}
                     </span>
                   </div>
                 ))}

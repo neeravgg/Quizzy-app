@@ -5,15 +5,16 @@ import { requireAuth } from "../components/utils/requireAuth";
 import { useRouter } from "next/router";
 import SidebarBehave from "../components/utils/sidebarBehave";
 import TestContext from "../components/context/TestContext";
+
 export default function PracticeTest() {
   const isLaptop = useMediaQuery("(min-width: 1024px)");
   const isTablet = useMediaQuery("(min-width: 768px )");
   const Router = useRouter();
-  const { FinalTestChance } = useContext(TestContext);
+  const { FinalTest } = useContext(TestContext);
 
   useEffect(() => {
-    if (FinalTestChance > 0) Router.push("/certificate");
-  }, []);
+    if (FinalTest === "2") Router.push("/reward");
+  });
 
   return (
     <>

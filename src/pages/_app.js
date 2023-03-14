@@ -6,7 +6,7 @@ import SideBar from "../components/Sidebar/sideBar";
 import Navbar from "../components/Navbar/navbar";
 import { SessionProvider } from "next-auth/react";
 import LogoutALert from "../components/Alert/logoutAlert";
-// import {bubbles} from 'hero-patterns'
+
 
 function MyApp({ Component, pageProps, session }) {
   return (

@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import TestContext from "../context/TestContext";
 import { useRouter } from "next/router";
 
-export default function agree() {
+export default function Agree() {
   const Router = useRouter();
   const { setisAgreed } = useContext(TestContext);
 

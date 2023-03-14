@@ -27,7 +27,7 @@ export default function Card() {
     return (count / 3) * 100;
   };
   const finalPercentage = () => {
-    return FinalTest === "2" ? 100 : 0;
+    return FinalTest === "4" ? 100 : 0;
   };
 
   // Grade calculation

@@ -1,16 +1,18 @@
 import React, { useContext } from "react";
-import Link from "next/link";
-import Router from "next/router";
+import { useRouter } from "next/router";
 import indicator from "./Dashboard/indicator";
 import TestContext from "./context/TestContext";
 import useMediaQuery from "./hooks/useMediaQuery";
-import { CheckCertificate } from "./utils/CheckCertificate";
 
 export default function IndicatorCards(props) {
   const isLaptop = useMediaQuery("(min-width: 1024px)");
   const { UnitTest1, UnitTest2, UnitTest3, FinalTest } = useContext(
     TestContext
   );
+  const Router = useRouter();
+  const handleLink = () => {
+    return FinalTest === "4" ? "/reward" : "/quiz/4";
+  };
   const UnitMenu = [
     {
       index: "1",
@@ -30,19 +32,28 @@ export default function IndicatorCards(props) {
       states: UnitTest3,
       titles: "UnitTest-3",
     },
-    { index: "4", link: "/quiz/4", states: FinalTest, titles: "Final-Test" },
+    {
+      index: "4",
+      link: `${handleLink()}`,
+      states: FinalTest,
+      titles: "Final-Test",
+    },
   ];
   const FinalMenu = [
-    { index: "4", link: "/quiz/4", states: FinalTest, titles: "Final-Test" },
+    {
+      index: "4",
+      link: `${handleLink()}`,
+      states: FinalTest,
+      titles: "Final-Test",
+    },
   ];
-
   const handleMenu = () => {
     return props.value !== "4" ? UnitMenu : FinalMenu;
   };
 
-  const handleLock = (state, link) => {
-    if (state != "1" && state != "4") Router.push(link);
-    if (state == "3") CheckCertificate();
+  const handleLock = (state, MenuLink) => {
+    if (props.value != "4" && state != ("1" && "2")) Router.push(MenuLink);
+    else if (props.value == "4" && state == "2") Router.push("/reward");
   };
 
   return (
@@ -52,10 +63,10 @@ export default function IndicatorCards(props) {
         .map((menu) => (
           <div className=' flex-1 '>
             <div
-              className={`flex flex-col transform   cursor-pointer transition duration-200 ease-in-out px-3 py-3 shadow-md rounded-3xl gap-7 ${isLaptop &&
-                "hover:scale-105"} ${indicator[menu.states]?.grad} ${
-                indicator[menu.states]?.theme
-              }`}
+              className={`flex flex-col transform   cursor-pointer transition duration-200 ease-in-out px-3 py-3 shadow-md rounded-3xl gap-7 
+              ${isLaptop && "hover:scale-105"} ${
+                indicator[menu.states]?.grad
+              } ${indicator[menu.states]?.theme}`}
             >
               {/* title */}
 
@@ -74,7 +85,7 @@ export default function IndicatorCards(props) {
                 <div className='inline-flex gap-2 justify-center '>
                   <svg
                     xmlns='http://www.w3.org/2000/svg'
-                    className='h-9 w-9 text-skin-accent mt-1'
+                    className='h-9 w-9 text-skin-base mt-1'
                     viewBox={indicator[menu.states]?.viewBox}
                     fill='currentColor'
                   >

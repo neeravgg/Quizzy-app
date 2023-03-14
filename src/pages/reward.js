@@ -1,33 +1,52 @@
-import React, { useContext } from "react";
-import TestContext from "../components/context/TestContext";
-import { useRouter } from "next/router";
+import React from "react";
+import dynamic from "next/dynamic";
+import SidebarBehave from "../components/utils/sidebarBehave";
+import useMediaQuery from "../components/hooks/useMediaQuery";
 
-export default function agree() {
-  const Router = useRouter();
+export default function UnitTest() {
+  const PDFDownload = dynamic(
+    () => import("../components/Certificate/GenerateCertificate"),
+    {
+      ssr: false,
+    }
+  );
+  const isLaptop = useMediaQuery("(min-width: 1024px)");
+  const isTablet = useMediaQuery("(min-width: 768px )");
 
   return (
-    <div
-      className={`flex flex-col  rounded-3xl bg-skin-base dark:bg-[#202020] dark:theme-dark shadow-md py-8 items-center justify-center text-center  gap-8  h-5/6 w-full sm:w-11/12 lg:w-8/12`}
-    >
-      <span
-        className={` text-3xl text-skin-base bg-skin-muted border-2 border-skin-base py-3 w-full shadow-sm  dark:theme-dark font-bold capitalize `}
-      >
-        NOTICE
-      </span>
-      {/* content */}
+    <SidebarBehave>
+      {/* main page */}
 
-      {/* button */}
-      <div className='mt-7 px-3 sm:px-1 lg:px-8 flex justify-between w-full sm:w-10/12 lg:w-7/12'>
-        <button
-          type='button'
-          className='inline-flex justify-center rounded-2xl border border-transparent px-4 py-2 text-sm lg:text-md font-bold text-white dark:theme-dark bg-skin-btn-mt hover:bg-skin-btn-mt-hover focus:outline-none focus-visible:ring focus-visible:ring-cyan-600 focus-visible:ring-opacity-75'
-          onClick={() => {
-            setisAgreed(true);
-          }}
+      <div
+        className={`flex flex-col  w-screen  gap-12 pb-10 px-1 items-center
+        ${isTablet && "gap-10 "} ${isLaptop && "gap-14  min-h-screen"} `}
+      >
+        {/* header */}
+        <div
+          className={`flex flex-col  rounded-3xl bg-skin-base dark:bg-gradient-to-r from-[#323232] to-[#292929] dark:theme-dark shadow-md py-7 items-center justify-center text-center  gap-4  w-full sm:w-11/12 md:w-9/12 `}
         >
-          Download Certificate
-        </button>
+          <span
+            className={` text-xl sm:text-3xl text-skin-base bg-skin-muted border-2 border-skin-base px-3 py-3 w-full  shadow-sm  dark:theme-dark font-bold capitalize `}
+          >
+            🎉CONGRATULATIONS🎉
+          </span>
+
+          <div className='flex flex-col  rounded-3xl bg-skin-hue dark:bg-skin-gold-hover shadow-md   py-3 lg:py-5  gap-3  w-full sm:w-11/12 lg:w-9/12 px-1 '>
+            <span
+              className={` rounded-xl text-md sm:text-xl text-skin-base dark:theme-dark font-bold `}
+            >
+              Please click on the DOWNLOAD button to get your CERTIFICATE.
+            </span>
+          </div>
+        </div>
+        {/* selection */}
+        <div
+          className={` flex  border-2 border-skin-muted dark:theme-dark  rounded-3xl bg-skin-base dark:bg-gradient-to-bl from-gray-900 to-gray justify-center  w-full sm:w-8/12 lg:w-6/12 px-3 sm:px-5 lg:px-1 py-5 sm:py-8 lg:py-10  
+             `}
+        >
+          <PDFDownload />
+        </div>
       </div>
-    </div>
+    </SidebarBehave>
   );
 }

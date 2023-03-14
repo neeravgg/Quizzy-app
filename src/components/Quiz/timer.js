@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import Countdown from "react-countdown";
 import TestContext from "../context/TestContext";
 
-export default function timer({ submit, duration }) {
+export default function Timer({ submit, duration }) {
   const { setShowScore, setTimer } = useContext(TestContext);
   const startDate = React.useRef(Date.now());
 

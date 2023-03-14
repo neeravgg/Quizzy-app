@@ -125,7 +125,7 @@ export default function Form() {
                 <p className={errorStyle}>{errors.phonenumber?.message}</p>
               </div>
             </div>
-            <hr/>
+            <hr />
             <div class='items-center w-full p-8 space-y-1 text-gray-500 md:inline-flex md:space-y-0'>
               <h2 class='max-w-sm mx-auto md:w-1/3 text-skin-muted text-2xl dark:theme-dark'>
                 Education
