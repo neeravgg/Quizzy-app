@@ -7,7 +7,7 @@ export default function LoginPage() {
   const Router = useRouter();
   return (
     <div className='flex flex-col bg-white rounded-xl shadow-sm dark:bg-gray-700 w-full sm:w-7/12 lg:w-5/12 xl:w-4/12 2xl:w-3/12 md:px-8 lg:px-10 justify-center'>
-      <div className=" text-center mt-5">
+      <div className=' text-center mt-5'>
         <Image
           src='/images/logo.png'
           width={250}

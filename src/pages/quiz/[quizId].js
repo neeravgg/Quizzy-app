@@ -25,36 +25,6 @@ export default function Quiz({ session }) {
   const duration = () => {
     return QuizId < 4 ? 15 * 60 * 1000 : 25 * 60 * 1000;
   };
-  useEffect(() => {
-    if (QuizId === 4 && FinalTestChance <= 0) 
-      Router.push("/");
-    else if(FinalTestChance > 0)
-    Router.push("/reward")
-  });
-
-  useEffect(() => {
-    const form = JSON.parse(localStorage.getItem("formData"));
-    if (QuizId != 4) {
-      fetch(
-        `${process.env.NEXT_PUBLIC_URL}/api/getQuestion/${form[0]?.class}/${QuizId}`
-      )
-        .then((res) => res.json())
-        .then((data) => {
-          setQuestionState(data);
-        });
-    } else {
-      fetch(`${process.env.NEXT_PUBLIC_URL}/api/getFinal/${form[0]?.class}`)
-        .then((res) => res.json())
-        .then((data) => {
-          setQuestionState(data);
-        });
-    }
-  }, []);
-  
-
-  useEffect(() => {
-    setQuestionOptions(shuffleArray());
-  }, [QuestionState]);
 
   const shuffleArray = () => {
     let arr = [];
@@ -71,6 +41,41 @@ export default function Quiz({ session }) {
     });
     return arr;
   };
+
+
+  useEffect(() => {
+    if (QuizId === 4 && FinalTestChance <= 0) 
+      Router.push("/");
+    else if(FinalTestChance > 0)
+    Router.push("/reward")
+  });
+
+
+  useEffect(() => {
+    const form = JSON.parse(localStorage.getItem("formData"));
+    if (QuizId !== 4) {
+      fetch(
+        `${process.env.NEXT_PUBLIC_URL}/api/getQuestion/${form[0]?.class}/${QuizId}`
+      )
+        .then((res) => res.json())
+        .then((data) => {
+          setQuestionState(data);
+        });
+    } else {
+      fetch(`${process.env.NEXT_PUBLIC_URL}/api/getFinal/${form[0]?.class}`)
+        .then((res) => res.json())
+        .then((data) => {
+          setQuestionState(data);
+        });
+    }
+  }, [!QuestionState]);
+  
+
+  useEffect(() => {
+    setQuestionOptions(shuffleArray());
+  }, [QuestionState]);
+
+ 
   function handleAnswerOption(answer, e) {
     e.preventDefault();
     setSelectedOptions([
