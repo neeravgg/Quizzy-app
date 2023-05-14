@@ -2,11 +2,8 @@ import { useEffect } from "react";
 import Router from "next/router";
 import { useBeforeUnload } from "react-use";
 
-export const useLeavePageConfirm = (
-  isConfirm = true,
-  message = "Are you sure want to leave the Test?"
-) => {
-  useBeforeUnload(isConfirm, message);
+export const UseLeavePageConfirm = (isConfirm) => {
+  
 
   useEffect(() => {
     const handler = () => {

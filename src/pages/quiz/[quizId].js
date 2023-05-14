@@ -7,13 +7,12 @@ import { getScore, getState } from "../../components/Quiz/getQuizStats";
 import Agree from "../../components/Quiz/agree";
 import Score from "../../components/Quiz/score";
 import Timer from "../../components/Quiz/timer";
-import { useLeavePageConfirm } from "../../components/Alert/TestAlert";
+import { UseLeavePageConfirm } from "../../components/Alert/TestAlert";
 
 export default function Quiz({ session }) {
-  useLeavePageConfirm(true);
   const Router = useRouter();
   const QuizId = Router.query.quizId;
-  const { FinalTestChance, isAgreed, showScore, setShowScore } = useContext(
+  const { FinalTestChance, isAgreed,setisAgreed, showScore, setShowScore,FinalScore } = useContext(
     TestContext
   );
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -46,7 +45,7 @@ export default function Quiz({ session }) {
   useEffect(() => {
     if (QuizId === 4 && FinalTestChance <= 0) 
       Router.push("/");
-    else if(FinalTestChance > 0)
+    else if(QuizId === 4 && (FinalScore/25) *100 >= 40  )
     Router.push("/reward")
   });
 
@@ -75,6 +74,9 @@ export default function Quiz({ session }) {
     setQuestionOptions(shuffleArray());
   }, [QuestionState]);
 
+  useEffect(() => {
+    setisAgreed(!isAgreed)
+  }, [Router.asPath]);
  
   function handleAnswerOption(answer, e) {
     e.preventDefault();
