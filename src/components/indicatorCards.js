@@ -10,29 +10,31 @@ export default function IndicatorCards(props) {
     TestContext
   );
   const Router = useRouter();
-
+  const getLink = (code, route) => {
+    return code === "1" || code === "2" ? "" : `/quiz/${route}`;
+  };
   const UnitMenu = [
     {
       index: "1",
-      link: UnitTest1 === "0" ? "/quiz/1" : "/",
+      link: getLink(UnitTest1, "1"),
       states: UnitTest1,
       titles: "UnitTest-1",
     },
     {
       index: "2",
-      link: UnitTest2 === "0" ? "/quiz/2" : "/",
+      link: getLink(UnitTest2, "2"),
       states: UnitTest2,
       titles: "UnitTest-2",
     },
     {
       index: "3",
-      link: UnitTest3 === "0" ? "/quiz/3" : "/",
+      link: getLink(UnitTest3, "3"),
       states: UnitTest3,
       titles: "UnitTest-3",
     },
     {
       index: "4",
-      link: FinalTest === "4" ? "/reward" : "/quiz/4",
+      link: FinalTest === "4" ? "/reward" : getLink(FinalTest, "4"),
       states: FinalTest,
       titles: "Final-Test",
     },
@@ -40,7 +42,7 @@ export default function IndicatorCards(props) {
   const FinalMenu = [
     {
       index: "4",
-      link: FinalTest === "4" ? "/reward" : "/quiz/4",
+      link: FinalTest === "4" ? "/reward" : getLink(FinalTest, "4"),
       states: FinalTest,
       titles: "Final-Test",
     },
