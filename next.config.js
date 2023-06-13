@@ -4,4 +4,7 @@ module.exports = {
     ignoreDuringBuilds: true,
   },
   output: "standalone",
+  experimental: {
+    outputStandalone: true,
+  },
 };
